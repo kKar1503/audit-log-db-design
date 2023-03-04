@@ -16,9 +16,7 @@ model user {
 model user_events {
   user_uuid String   @db.Uuid
   user_pos  BigInt
-  field     String   @db.String(20)
-  old       String?  @db.String(10000)
-  new       String?  @db.String(10000)
+  value     String   @db.String(10000)
   action    action
   datetime  DateTime @default(now()) @db.Timestamp(6)
   user      user     @relation(fields: [user_uuid], references: [uuid], onDelete: Cascade, onUpdate: NoAction, map: "user_events_fk")
