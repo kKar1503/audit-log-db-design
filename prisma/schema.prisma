@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  uuid        String        @id(map: "user_pk") @db.Uuid
+  pos         BigInt
+  user_events user_events[]
+}
+
+model user_events {
+  user_uuid String   @db.Uuid
+  user_pos  BigInt
+  field     String   @db.String(20)
+  old       String?  @db.String(10000)
+  new       String?  @db.String(10000)
+  action    action
+  datetime  DateTime @default(now()) @db.Timestamp(6)
+  user      user     @relation(fields: [user_uuid], references: [uuid], onDelete: Cascade, onUpdate: NoAction, map: "user_events_fk")
+
+  @@id([user_uuid, user_pos], map: "user_events_pk")
+}
+
+enum action {
+  create
+  update
+  delete
+}
