@@ -4,7 +4,6 @@ specifiers:
   '@prisma/client': ^4.11.0
   '@types/express': ^4.17.17
   '@types/node': ^18.14.6
-  audit-log-db-design: 'link:'
   dotenv: ^16.0.3
   express: ^4.18.2
   prisma: ^4.11.0
@@ -13,7 +12,6 @@ specifiers:
 
 dependencies:
   '@prisma/client': 4.11.0_prisma@4.11.0
-  audit-log-db-design: 'link:'
   dotenv: 16.0.3
   express: 4.18.2
 
